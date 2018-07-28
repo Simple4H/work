@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.simple.dao.MessageMapper">
-  <resultMap id="BaseResultMap" type="com.simple.pojo.Message">
+<mapper namespace="com.simple.dao.DetailMapper">
+  <resultMap id="BaseResultMap" type="com.simple.pojo.Detail">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UUID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="times" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="temperature" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="weight" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, title, description, temperature, weight, create_time, update_time
+    id, UUID, times, temperature, weight, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from qs_data
+    from qs_detail
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from qs_data
+    delete from qs_detail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.simple.pojo.Message">
-    insert into qs_data (id, title, description, 
-      temperature, weight, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{temperature,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.simple.pojo.Detail">
+    insert into qs_detail (id, UUID, times, 
+      temperature, weight, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=INTEGER}, #{times,jdbcType=INTEGER}, 
+      #{temperature,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.simple.pojo.Message">
-    insert into qs_data
+  <insert id="insertSelective" parameterType="com.simple.pojo.Detail">
+    insert into qs_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="title != null">
-        title,
+      <if test="uuid != null">
+        UUID,
       </if>
-      <if test="description != null">
-        description,
+      <if test="times != null">
+        times,
       </if>
       <if test="temperature != null">
         temperature,
@@ -54,19 +53,16 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
+      <if test="uuid != null">
+        #{uuid,jdbcType=INTEGER},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
+      <if test="times != null">
+        #{times,jdbcType=INTEGER},
       </if>
       <if test="temperature != null">
         #{temperature,jdbcType=VARCHAR},
@@ -77,19 +73,16 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.simple.pojo.Message">
-    update qs_data
+  <update id="updateByPrimaryKeySelective" parameterType="com.simple.pojo.Detail">
+    update qs_detail
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
+      <if test="uuid != null">
+        UUID = #{uuid,jdbcType=INTEGER},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="times != null">
+        times = #{times,jdbcType=INTEGER},
       </if>
       <if test="temperature != null">
         temperature = #{temperature,jdbcType=VARCHAR},
@@ -100,20 +93,16 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.simple.pojo.Message">
-    update qs_data
-    set title = #{title,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.simple.pojo.Detail">
+    update qs_detail
+    set UUID = #{uuid,jdbcType=INTEGER},
+      times = #{times,jdbcType=INTEGER},
       temperature = #{temperature,jdbcType=VARCHAR},
       weight = #{weight,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

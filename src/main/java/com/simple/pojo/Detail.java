@@ -2,12 +2,12 @@ package com.simple.pojo;
 
 import java.util.Date;
 
-public class Message {
+public class Detail {
     private Integer id;
 
-    private String title;
+    private Integer uuid;
 
-    private String description;
+    private Integer times;
 
     private String temperature;
 
@@ -15,19 +15,16 @@ public class Message {
 
     private Date createTime;
 
-    private Date updateTime;
-
-    public Message(Integer id, String title, String description, String temperature, String weight, Date createTime, Date updateTime) {
+    public Detail(Integer id, Integer uuid, Integer times, String temperature, String weight, Date createTime) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.uuid = uuid;
+        this.times = times;
         this.temperature = temperature;
         this.weight = weight;
         this.createTime = createTime;
-        this.updateTime = updateTime;
     }
 
-    public Message() {
+    public Detail() {
         super();
     }
 
@@ -39,20 +36,20 @@ public class Message {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getUuid() {
+        return uuid;
     }
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+    public void setUuid(Integer uuid) {
+        this.uuid = uuid;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getTimes() {
+        return times;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setTimes(Integer times) {
+        this.times = times;
     }
 
     public String getTemperature() {
@@ -77,13 +74,5 @@ public class Message {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

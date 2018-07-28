@@ -140,8 +140,4 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="getList" resultType="map">
-    select * from qs_user;
-  </select>
 </mapper>

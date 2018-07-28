@@ -71,7 +71,10 @@
         <table tableName="qs_user" domainObjectName="User" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
-        <table tableName="qs_data" domainObjectName="Message" enableCountByExample="false"
+        <table tableName="qs_data" domainObjectName="Data" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table tableName="qs_detail" domainObjectName="Detail" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
         <!-- simplenote mybatis插件的搭建 -->
