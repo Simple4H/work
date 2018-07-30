@@ -1,7 +1,5 @@
 package com.simple.pojo;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import java.util.Date;
 
 public class User {
@@ -9,7 +7,6 @@ public class User {
 
     private String username;
 
-    @Ignore
     private String password;
 
     private String email;
