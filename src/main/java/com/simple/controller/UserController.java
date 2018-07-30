@@ -1,7 +1,6 @@
 package com.simple.controller;
 
 import com.simple.common.Const;
-import com.simple.common.ResponseCode;
 import com.simple.common.ServerResponse;
 import com.simple.pojo.User;
 import com.simple.service.IUserService;
@@ -9,7 +8,6 @@ import com.simple.util.CookieUtil;
 import com.simple.util.JsonUtil;
 import com.simple.util.RedisPoolUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
