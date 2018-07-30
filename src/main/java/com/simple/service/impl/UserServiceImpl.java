@@ -1,13 +1,20 @@
 package com.simple.service.impl;
 
 import com.simple.common.Const;
+import com.simple.common.ResponseCode;
 import com.simple.common.ServerResponse;
 import com.simple.dao.UserMapper;
 import com.simple.pojo.User;
 import com.simple.service.IUserService;
+import com.simple.util.CookieUtil;
+import com.simple.util.JsonUtil;
 import com.simple.util.MD5Util;
+import com.simple.util.RedisPoolUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -43,11 +50,29 @@ public class UserServiceImpl implements IUserService {
         if (emailResult > 0) {
             User user = userMapper.emailLogin(email, MD5Util.MD5EncodeUtf8(password));
             if (user != null) {
-                return ServerResponse.createBySuccess("登录成功",user);
+                return ServerResponse.createBySuccess("登录成功", user);
             }
             return ServerResponse.createByErrorMessage("密码错误");
         }
         return ServerResponse.createByErrorMessage("邮箱不存在");
+    }
+
+    // 查看登录状态
+    public ServerResponse checkLoginStatus(HttpServletRequest request) {
+        String loginToken = CookieUtil.readLoginToken(request);
+        if (StringUtils.isEmpty(loginToken)) {
+            return ServerResponse.createByErrorMessage(ResponseCode.NEED_LOGIN.getDesc());
+        }
+        User user = JsonUtil.string2Obj(RedisPoolUtil.get(loginToken),User.class);
+        return ServerResponse.createBySuccess("获取成功",user);
+    }
+
+    // 验证权限
+    public ServerResponse checkAdmin(int authority) {
+        if (authority == Const.Authority.AUTHORITY_ADMIN) {
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByErrorMessage("权限不足");
     }
 
     // 检查用户名和邮箱
