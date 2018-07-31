@@ -14,4 +14,6 @@ public interface DataMapper {
     int updateByPrimaryKeySelective(Data record);
 
     int updateByPrimaryKey(Data record);
+
+    int updateFinishTime(String number);
 }

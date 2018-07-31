@@ -8,4 +8,6 @@ import com.simple.common.ServerResponse;
 public interface IDataService {
 
     ServerResponse createNewData(String number, String author);
+
+    ServerResponse finishNewData(String number);
 }

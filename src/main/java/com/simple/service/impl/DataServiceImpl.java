@@ -27,7 +27,11 @@ public class DataServiceImpl implements IDataService {
         return ServerResponse.createByErrorMessage("新建数据异常");
     }
 
-    public ServerResponse finishNewData(int UUID) {
-        return null;
+    public ServerResponse finishNewData(String number) {
+        int result = dataMapper.updateFinishTime(number);
+        if (result > 0) {
+            return ServerResponse.createBySuccessMessage("结束成功");
+        }
+        return ServerResponse.createByErrorMessage("结束异常");
     }
 }

@@ -27,14 +27,24 @@ public class DataController {
     @Autowired
     private IUserService iUserService;
 
-    @RequestMapping(value = "create_new_data.do",method = RequestMethod.POST)
+    @RequestMapping(value = "create_new_data.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse createNewData(String number, HttpServletRequest request){
-        ServerResponse result = iUserService.checkLoginStatus(request);
-        if (result.isSuccess()){
-            User user = (User) result.getData();
-            return iDataService.createNewData(number,user.getUsername());
+    public ServerResponse createNewData(String number, HttpServletRequest request) {
+        ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
+        if (checkLoginResult.isSuccess()) {
+            User user = (User) checkLoginResult.getData();
+            return iDataService.createNewData(number, user.getUsername());
         }
-        return result;
+        return checkLoginResult;
+    }
+
+    @RequestMapping(value = "finish_new_data.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse finishNewData(String number, HttpServletRequest request) {
+        ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
+        if (checkLoginResult.isSuccess()) {
+            return iDataService.finishNewData(number);
+        }
+        return checkLoginResult;
     }
 }
