@@ -60,11 +60,11 @@ public class UserServiceImpl implements IUserService {
     // 查看登录状态
     public ServerResponse checkLoginStatus(HttpServletRequest request) {
         String loginToken = CookieUtil.readLoginToken(request);
-        if (StringUtils.isEmpty(loginToken)) {
-            return ServerResponse.createByErrorMessage(ResponseCode.NEED_LOGIN.getDesc());
-        }
         User user = JsonUtil.string2Obj(RedisPoolUtil.get(loginToken),User.class);
-        return ServerResponse.createBySuccess("获取成功",user);
+        if (user != null) {
+            return ServerResponse.createBySuccess("获取成功",user);
+        }
+        return ServerResponse.createByErrorMessage(ResponseCode.NEED_LOGIN.getDesc());
     }
 
     // 验证权限

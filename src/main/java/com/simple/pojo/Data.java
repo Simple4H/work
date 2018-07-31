@@ -5,9 +5,7 @@ import java.util.Date;
 public class Data {
     private Integer id;
 
-    private Integer uuid;
-
-    private Integer number;
+    private String number;
 
     private String personnel;
 
@@ -15,9 +13,8 @@ public class Data {
 
     private Date closeTime;
 
-    public Data(Integer id, Integer uuid, Integer number, String personnel, Date createTime, Date closeTime) {
+    public Data(Integer id, String number, String personnel, Date createTime, Date closeTime) {
         this.id = id;
-        this.uuid = uuid;
         this.number = number;
         this.personnel = personnel;
         this.createTime = createTime;
@@ -36,20 +33,12 @@ public class Data {
         this.id = id;
     }
 
-    public Integer getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
-    }
-
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setNumber(String number) {
+        this.number = number == null ? null : number.trim();
     }
 
     public String getPersonnel() {

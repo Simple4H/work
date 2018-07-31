@@ -33,10 +33,8 @@ default charset = utf8;
 create table `qs_data` (
 `id`          int(11)     not null auto_increment
 comment '数据表ID',
-`UUID`        int(50)     not null
-comment 'UUID',
-`number`      int(100)    not null
-comment '次数',
+`number`      varchar(11) not null
+comment '编号',
 `personnel`   varchar(20) not null
 comment '操作人员',
 `create_time` datetime    not null
@@ -44,7 +42,7 @@ comment '开始时间',
 `close_time`  datetime    not null
 comment '结束时间',
 primary key (`id`),
-unique key `uuid_unique` (`UUID`) using btree
+unique key `number_unique` (`number`) using btree
 )
 engine = InnoDB
 auto_increment = 1
@@ -52,18 +50,18 @@ default charset = utf8
 
 -- 数据表从表
 create table `qs_detail`(
-`id` int(11) not null auto_increment
-comment '',
-`UUID` int(50) not null
-comment '',
-`times` int(10) not null
-comment '',
+`id`          int(11)     not null auto_increment
+comment '数据表从表ID',
+`data_id`     int (11)    not null
+comment '数据表ID',
+`times`       int(10)     not null
+comment '次数',
 `temperature` varchar(20) not null
-comment '',
-`weight` varchar(20) not null
-comment '',
-`create_time` datetime not null
-comment '',
+comment '温度',
+`weight`      varchar(20) not null
+comment '重量',
+`create_time` datetime    not null
+comment '创建时间',
 primary key (`id`)
 )
 engine = InnoDB
