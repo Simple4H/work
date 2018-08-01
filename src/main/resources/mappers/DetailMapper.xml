@@ -29,7 +29,7 @@
       temperature, weight, create_time
       )
     values (#{id,jdbcType=INTEGER}, #{dataNumber,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
-      #{temperature,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      #{temperature,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.simple.pojo.Detail">

@@ -16,7 +16,8 @@ public class WorkApplicationTests {
 
     @Test
     public void contextLoads() {
-        log.info("UUID:{}",UUID.randomUUID().toString());
+        String a = "simple" + "times";
+        log.error("a:{}",a);
 
     }
 

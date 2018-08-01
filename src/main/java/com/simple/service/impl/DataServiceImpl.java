@@ -20,6 +20,7 @@ public class DataServiceImpl implements IDataService {
     @Autowired
     private DataMapper dataMapper;
 
+    // TODO: 2018/8/1 编号重复
     public ServerResponse createNewData(String number, String author) {
         Data data = new Data();
         data.setNumber(number);
@@ -49,7 +50,10 @@ public class DataServiceImpl implements IDataService {
         if (result > 0) {
             // 删除Redis缓存
             try {
+                // 删除编号的缓存
                 RedisPoolUtil.del(author);
+                // 删除次数的缓存
+                RedisPoolUtil.del(author+"times");
             } catch (Exception e) {
                 log.error("删除Redis缓存失败",e);
             }
