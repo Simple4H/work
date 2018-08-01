@@ -16,4 +16,6 @@ public interface DataMapper {
     int updateByPrimaryKey(Data record);
 
     int updateFinishTime(String number);
+
+    Data selectByNumber(String number);
 }

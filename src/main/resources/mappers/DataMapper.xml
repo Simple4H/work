@@ -91,11 +91,17 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       close_time = #{closeTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+    </update>
 
     <update id="updateFinishTime" parameterType="string">
-    update qs_data
-    set close_time = now()
-    where number = #{number}
-  </update>
+        update qs_data
+        set close_time = now()
+        where number = #{number}
+    </update>
+
+    <select id="selectByNumber" parameterType="string" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from qs_data
+        where number=#{number}
+    </select>
 </mapper>

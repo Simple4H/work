@@ -9,5 +9,5 @@ public interface IDataService {
 
     ServerResponse createNewData(String number, String author);
 
-    ServerResponse finishNewData(String number);
+    ServerResponse finishNewData(String number,String author);
 }

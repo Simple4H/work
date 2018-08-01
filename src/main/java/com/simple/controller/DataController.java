@@ -43,7 +43,8 @@ public class DataController {
     public ServerResponse finishNewData(String number, HttpServletRequest request) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
         if (checkLoginResult.isSuccess()) {
-            return iDataService.finishNewData(number);
+            User user = (User) checkLoginResult.getData();
+            return iDataService.finishNewData(number,user.getUsername());
         }
         return checkLoginResult;
     }
