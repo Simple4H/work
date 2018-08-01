@@ -40,11 +40,11 @@ public class DataController {
 
     @RequestMapping(value = "finish_new_data.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse finishNewData(String number, HttpServletRequest request) {
+    public ServerResponse finishNewData(HttpServletRequest request) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
         if (checkLoginResult.isSuccess()) {
             User user = (User) checkLoginResult.getData();
-            return iDataService.finishNewData(number,user.getUsername());
+            return iDataService.finishNewData(user.getUsername());
         }
         return checkLoginResult;
     }

@@ -52,8 +52,8 @@ default charset = utf8
 create table `qs_detail`(
 `id`          int(11)     not null auto_increment
 comment '数据表从表ID',
-`data_id`     int (11)    not null
-comment '数据表ID',
+`data_number` varchar(11) not null
+comment '数据表编号',
 `times`       int(10)     not null
 comment '次数',
 `temperature` varchar(20) not null

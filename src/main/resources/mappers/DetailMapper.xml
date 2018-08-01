@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.simple.pojo.Detail">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="data_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="data_number" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="times" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="temperature" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="weight" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, data_id, times, temperature, weight, create_time
+    id, data_number, times, temperature, weight, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,10 +25,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.simple.pojo.Detail">
-    insert into qs_detail (id, data_id, times, 
+    insert into qs_detail (id, data_number, times, 
       temperature, weight, create_time
       )
-    values (#{id,jdbcType=INTEGER}, #{dataId,jdbcType=INTEGER}, #{times,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{dataNumber,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
       #{temperature,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -38,8 +38,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="dataId != null">
-        data_id,
+      <if test="dataNumber != null">
+        data_number,
       </if>
       <if test="times != null">
         times,
@@ -58,8 +58,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="dataId != null">
-        #{dataId,jdbcType=INTEGER},
+      <if test="dataNumber != null">
+        #{dataNumber,jdbcType=VARCHAR},
       </if>
       <if test="times != null">
         #{times,jdbcType=INTEGER},
@@ -78,8 +78,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.simple.pojo.Detail">
     update qs_detail
     <set>
-      <if test="dataId != null">
-        data_id = #{dataId,jdbcType=INTEGER},
+      <if test="dataNumber != null">
+        data_number = #{dataNumber,jdbcType=VARCHAR},
       </if>
       <if test="times != null">
         times = #{times,jdbcType=INTEGER},
@@ -98,7 +98,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.simple.pojo.Detail">
     update qs_detail
-    set data_id = #{dataId,jdbcType=INTEGER},
+    set data_number = #{dataNumber,jdbcType=VARCHAR},
       times = #{times,jdbcType=INTEGER},
       temperature = #{temperature,jdbcType=VARCHAR},
       weight = #{weight,jdbcType=VARCHAR},

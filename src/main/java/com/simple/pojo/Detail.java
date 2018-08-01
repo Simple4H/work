@@ -5,7 +5,7 @@ import java.util.Date;
 public class Detail {
     private Integer id;
 
-    private Integer dataId;
+    private String dataNumber;
 
     private Integer times;
 
@@ -15,9 +15,9 @@ public class Detail {
 
     private Date createTime;
 
-    public Detail(Integer id, Integer dataId, Integer times, String temperature, String weight, Date createTime) {
+    public Detail(Integer id, String dataNumber, Integer times, String temperature, String weight, Date createTime) {
         this.id = id;
-        this.dataId = dataId;
+        this.dataNumber = dataNumber;
         this.times = times;
         this.temperature = temperature;
         this.weight = weight;
@@ -36,12 +36,12 @@ public class Detail {
         this.id = id;
     }
 
-    public Integer getDataId() {
-        return dataId;
+    public String getDataNumber() {
+        return dataNumber;
     }
 
-    public void setDataId(Integer dataId) {
-        this.dataId = dataId;
+    public void setDataNumber(String dataNumber) {
+        this.dataNumber = dataNumber == null ? null : dataNumber.trim();
     }
 
     public Integer getTimes() {
