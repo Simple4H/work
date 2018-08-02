@@ -1,5 +1,7 @@
 package com.simple.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.simple.common.ServerResponse;
 import com.simple.dao.DataMapper;
 import com.simple.pojo.Data;
@@ -46,6 +48,7 @@ public class DataServiceImpl implements IDataService {
         return ServerResponse.createByErrorMessage("新建数据异常");
     }
 
+    // 结束数据
     public ServerResponse finishNewData(String username) {
         // 获取缓存里面的编号
         String number = RedisPoolUtil.get(username);
@@ -69,14 +72,19 @@ public class DataServiceImpl implements IDataService {
         return ServerResponse.createByErrorMessage("结束异常");
     }
 
-    public ServerResponse getAllData(String username) {
+    // 查询所有的文章
+    public ServerResponse getAllData(String username,int pageNum) {
+        // 分页
+        PageHelper.startPage(pageNum,3);
         List<User> userList = dataMapper.getAllData(username);
         if (userList.isEmpty()) {
             return ServerResponse.createByErrorMessage("没有查询到任何信息");
         }
-        return ServerResponse.createBySuccess("查询到相关数据", userList);
+        PageInfo<User> pageInfo = new PageInfo<>(userList);
+        return ServerResponse.createBySuccess("查询到相关数据", pageInfo);
     }
 
+    // 通过编号查询
     public ServerResponse selectByNumber(String number, String username) {
         Data data = dataMapper.selectByNumber(number, username);
         if (data != null) {

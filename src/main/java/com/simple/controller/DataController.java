@@ -52,11 +52,11 @@ public class DataController {
     // 查询用户的所有数据
     @RequestMapping(value = "get_all_data.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getAllData(HttpServletRequest request) {
+    public ServerResponse getAllData(HttpServletRequest request,int pageNum) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
         if (checkLoginResult.isSuccess()) {
             User user = (User) checkLoginResult.getData();
-            return iDataService.getAllData(user.getUsername());
+            return iDataService.getAllData(user.getUsername(),pageNum);
         }
         return checkLoginResult;
     }
