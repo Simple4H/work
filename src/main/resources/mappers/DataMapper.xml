@@ -99,15 +99,19 @@
         where number = #{number}
     </update>
 
-    <select id="selectByNumber" parameterType="string" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
-        from qs_data
-        where number=#{number}
-    </select>
-
     <select id="getAllData" resultMap="BaseResultMap" parameterType="string">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from qs_data
         where personnel = #{username}
+    </select>
+
+    <select id="selectByNumber" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from qs_data
+        where number=#{number}
+        and
+        personnel = #{username}
     </select>
 </mapper>

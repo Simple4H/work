@@ -24,6 +24,7 @@ public class DataServiceImpl implements IDataService {
     private DataMapper dataMapper;
 
     // TODO: 2018/8/1 编号重复
+    // TODO: 2018/8/2 不同用户的起相同的编号也会报错
     public ServerResponse createNewData(String number, String author) {
         Data data = new Data();
         data.setNumber(number);
@@ -71,5 +72,13 @@ public class DataServiceImpl implements IDataService {
             return ServerResponse.createByErrorMessage("没有查询到任何信息");
         }
         return ServerResponse.createBySuccess("查询到相关数据",userList);
+    }
+
+    public ServerResponse selectByNumber(String number, String username){
+        Data data = dataMapper.selectByNumber(number, username);
+        if (data != null) {
+            return ServerResponse.createBySuccess("查询成功",data);
+        }
+        return ServerResponse.createByErrorMessage("没有查询到相关数据");
     }
 }

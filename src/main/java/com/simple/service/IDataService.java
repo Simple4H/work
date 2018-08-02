@@ -12,4 +12,6 @@ public interface IDataService {
     ServerResponse finishNewData(String author);
 
     ServerResponse getAllData(String username);
+
+    ServerResponse selectByNumber(String number,String username);
 }
