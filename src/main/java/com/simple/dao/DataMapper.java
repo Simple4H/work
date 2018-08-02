@@ -1,6 +1,9 @@
 package com.simple.dao;
 
 import com.simple.pojo.Data;
+import com.simple.pojo.User;
+
+import java.util.List;
 
 public interface DataMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,4 +21,6 @@ public interface DataMapper {
     int updateFinishTime(String number);
 
     Data selectByNumber(String number);
+
+    List<User> getAllData(String username);
 }

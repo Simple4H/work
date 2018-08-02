@@ -48,4 +48,17 @@ public class DataController {
         }
         return checkLoginResult;
     }
+
+    // TODO: 2018/8/2 查询编号
+    // 查询用户的所有数据
+    @RequestMapping(value = "get_all_data.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getAllData(HttpServletRequest request){
+        ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
+        if (checkLoginResult.isSuccess()) {
+            User user = (User) checkLoginResult.getData();
+            return iDataService.getAllData(user.getUsername());
+        }
+        return checkLoginResult;
+    }
 }

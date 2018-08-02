@@ -10,4 +10,6 @@ public interface IDataService {
     ServerResponse createNewData(String number, String author);
 
     ServerResponse finishNewData(String author);
+
+    ServerResponse getAllData(String username);
 }

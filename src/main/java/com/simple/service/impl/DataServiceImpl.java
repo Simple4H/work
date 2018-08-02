@@ -3,12 +3,15 @@ package com.simple.service.impl;
 import com.simple.common.ServerResponse;
 import com.simple.dao.DataMapper;
 import com.simple.pojo.Data;
+import com.simple.pojo.User;
 import com.simple.service.IDataService;
 import com.simple.util.RedisPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Create By S I M P L E On 2018/07/31 15:52:56
@@ -39,9 +42,9 @@ public class DataServiceImpl implements IDataService {
         return ServerResponse.createByErrorMessage("新建数据异常");
     }
 
-    public ServerResponse finishNewData(String author) {
+    public ServerResponse finishNewData(String username) {
         // 获取缓存里面的编号
-        String number = RedisPoolUtil.get(author);
+        String number = RedisPoolUtil.get(username);
         if (StringUtils.isEmpty(number)){
             return ServerResponse.createByErrorMessage("缓存不存在");
         }
@@ -51,14 +54,22 @@ public class DataServiceImpl implements IDataService {
             // 删除Redis缓存
             try {
                 // 删除编号的缓存
-                RedisPoolUtil.del(author);
+                RedisPoolUtil.del(username);
                 // 删除次数的缓存
-                RedisPoolUtil.del(author+"times");
+                RedisPoolUtil.del(username+"times");
             } catch (Exception e) {
                 log.error("删除Redis缓存失败",e);
             }
             return ServerResponse.createBySuccessMessage("结束成功");
         }
         return ServerResponse.createByErrorMessage("结束异常");
+    }
+
+    public ServerResponse getAllData(String username) {
+        List<User> userList = dataMapper.getAllData(username);
+        if (userList.isEmpty()){
+            return ServerResponse.createByErrorMessage("没有查询到任何信息");
+        }
+        return ServerResponse.createBySuccess("查询到相关数据",userList);
     }
 }
