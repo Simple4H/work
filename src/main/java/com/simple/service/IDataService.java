@@ -13,5 +13,5 @@ public interface IDataService {
 
     ServerResponse getAllData(String username);
 
-    ServerResponse selectByNumber(String number,String username);
+    ServerResponse selectByNumber(String number, String username);
 }

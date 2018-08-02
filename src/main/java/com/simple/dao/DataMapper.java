@@ -23,5 +23,7 @@ public interface DataMapper {
 
     List<User> getAllData(String username);
 
-    Data selectByNumber(@Param(value = "number")String number,@Param(value = "username")String username);
+    Data selectByNumber(@Param(value = "number") String number, @Param(value = "username") String username);
+
+    int checkNumber(@Param(value = "number") String number,@Param(value = "username")String username);
 }

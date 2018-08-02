@@ -110,8 +110,15 @@
         select
         <include refid="Base_Column_List"/>
         from qs_data
-        where number=#{number}
+        where number = #{number}
         and
         personnel = #{username}
+    </select>
+
+    <select id="checkNumber" resultType="int" parameterType="string">
+        select count(1)
+        from qs_data
+        where number = #{number}
+        and personnel = #{username}
     </select>
 </mapper>
