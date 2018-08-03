@@ -28,7 +28,7 @@ public class DataServiceImpl implements IDataService {
     // TODO: 2018/8/2 不同用户的起相同的编号也会报错
     public ServerResponse createNewData(String number, String username) {
         // 查看编号是否存在
-        if (dataMapper.checkNumber(number,username) > 0){
+        if (dataMapper.checkNumber(number, username) > 0) {
             return ServerResponse.createByErrorMessage("编号已经存在");
         }
         Data data = new Data();
@@ -73,9 +73,9 @@ public class DataServiceImpl implements IDataService {
     }
 
     // 查询所有的文章
-    public ServerResponse getAllData(String username,int pageNum) {
+    public ServerResponse getAllData(String username, int pageNum) {
         // 分页
-        PageHelper.startPage(pageNum,3);
+        PageHelper.startPage(pageNum, 3);
         List<User> userList = dataMapper.getAllData(username);
         if (userList.isEmpty()) {
             return ServerResponse.createByErrorMessage("没有查询到任何信息");
