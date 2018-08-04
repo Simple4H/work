@@ -25,7 +25,6 @@ public class DataServiceImpl implements IDataService {
     @Autowired
     private DataMapper dataMapper;
 
-    // TODO: 2018/8/2 详情表需要绑定主表
     public ServerResponse createNewData(String number, String username) {
         // 查看编号是否存在
         if (dataMapper.checkNumber(number, username) > 0) {

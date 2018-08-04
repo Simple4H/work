@@ -35,7 +35,7 @@ public class DetailServiceImpl implements IDetailService {
         }
         int times = Objects.requireNonNull(RedisPoolUtil.incr(author + "times")).intValue();
         // 设置数据
-        detail.setDataNumber(number);
+        detail.setDataNumber(number + author);
         detail.setTimes(times);
         detail.setTemperature(temperature);
         detail.setWeight(weight);
