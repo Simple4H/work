@@ -41,8 +41,7 @@ comment '操作人员',
 comment '开始时间',
 `close_time`  datetime    not null
 comment '结束时间',
-primary key (`id`),
-unique key `number_unique` (`number`) using btree
+primary key (`id`)
 )
 engine = InnoDB
 auto_increment = 1
