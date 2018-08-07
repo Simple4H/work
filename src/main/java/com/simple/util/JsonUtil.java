@@ -82,11 +82,11 @@ public class JsonUtil {
         }
     }
 
-    public static <T> T string2Obj(String str, Class<?> connectionClass, Class<?>...elementsClasses) {
-        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(connectionClass,elementsClasses);
+    public static <T> T string2Obj(String str, Class<?> connectionClass, Class<?>... elementsClasses) {
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(connectionClass, elementsClasses);
 
         try {
-            return objectMapper.readValue(str,javaType);
+            return objectMapper.readValue(str, javaType);
         } catch (Exception e) {
             log.warn("Parse String to Object error");
             return null;

@@ -25,5 +25,5 @@ public interface DataMapper {
 
     Data selectByNumber(@Param(value = "number") String number, @Param(value = "username") String username);
 
-    int checkNumber(@Param(value = "number") String number,@Param(value = "username")String username);
+    int checkNumber(@Param(value = "number") String number, @Param(value = "username") String username);
 }

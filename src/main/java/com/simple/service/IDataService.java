@@ -11,7 +11,7 @@ public interface IDataService {
 
     ServerResponse finishNewData(String author);
 
-    ServerResponse getAllData(String username,int pageNum);
+    ServerResponse getAllData(String username, int pageNum);
 
     ServerResponse selectByNumber(String number, String username);
 }

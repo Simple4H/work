@@ -54,7 +54,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse getInformation(HttpServletRequest request) {
         ServerResponse checkResult = iUserService.checkLoginStatus(request);
-        if (checkResult.isSuccess()){
+        if (checkResult.isSuccess()) {
             return checkResult;
         }
         return checkResult;

@@ -25,7 +25,7 @@ public class DetailController {
     @Autowired
     private IUserService iUserService;
 
-    @RequestMapping(value = "create_detail.do",method = RequestMethod.POST)
+    @RequestMapping(value = "create_detail.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse createDetail(HttpServletRequest request, String temperature, String weight) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);

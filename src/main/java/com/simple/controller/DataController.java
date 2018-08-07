@@ -52,17 +52,17 @@ public class DataController {
     // 查询用户的所有数据
     @RequestMapping(value = "get_all_data.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getAllData(HttpServletRequest request,int pageNum) {
+    public ServerResponse getAllData(HttpServletRequest request, int pageNum) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
         if (checkLoginResult.isSuccess()) {
             User user = (User) checkLoginResult.getData();
-            return iDataService.getAllData(user.getUsername(),pageNum);
+            return iDataService.getAllData(user.getUsername(), pageNum);
         }
         return checkLoginResult;
     }
 
     // 通过编号查询
-    @RequestMapping(value = "select_by_number.do",method = RequestMethod.POST)
+    @RequestMapping(value = "select_by_number.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse selectByNumber(HttpServletRequest request, String number) {
         ServerResponse checkLoginResult = iUserService.checkLoginStatus(request);
