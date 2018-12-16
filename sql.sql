@@ -1,4 +1,4 @@
-drop database db_qiansheng;
+drop database  db_qiansheng;
 -- 创建数据库
 create database db_qiansheng default character set utf8 COLLATE utf8_general_ci;
 use db_qiansheng;
@@ -45,7 +45,7 @@ primary key (`id`)
 )
 engine = InnoDB
 auto_increment = 1
-default charset = utf8
+default charset = utf8;
 
 -- 数据表从表
 create table `qs_detail`(

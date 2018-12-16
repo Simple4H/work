@@ -4,7 +4,6 @@ import com.simple.common.ServerResponse;
 import com.simple.dao.DetailMapper;
 import com.simple.pojo.Detail;
 import com.simple.service.IDetailService;
-import com.simple.util.RedisPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

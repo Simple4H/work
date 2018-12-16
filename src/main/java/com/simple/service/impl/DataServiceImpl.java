@@ -7,7 +7,6 @@ import com.simple.dao.DataMapper;
 import com.simple.pojo.Data;
 import com.simple.pojo.User;
 import com.simple.service.IDataService;
-import com.simple.util.RedisPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

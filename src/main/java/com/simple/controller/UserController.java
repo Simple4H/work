@@ -6,7 +6,7 @@ import com.simple.pojo.User;
 import com.simple.service.IUserService;
 import com.simple.util.CookieUtil;
 import com.simple.util.JsonUtil;
-import com.simple.util.RedisPoolUtil;
+import com.simple.util.RedisShardedPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class UserController {
         ServerResponse result = iUserService.login(email, password);
         if (result.isSuccess()) {
             CookieUtil.writeLoginToken(response, session.getId());
-            RedisPoolUtil.setEx(session.getId(), Const.RedisTime.REDIS_CACHE_EXTIME, JsonUtil.obj2String(result.getData()));
+            RedisShardedPoolUtil.setEx(session.getId(), Const.RedisTime.REDIS_CACHE_EXTIME, JsonUtil.obj2String(result.getData()));
             return result;
         }
         return result;

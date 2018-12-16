@@ -9,8 +9,6 @@ import com.simple.service.IUserService;
 import com.simple.util.CookieUtil;
 import com.simple.util.JsonUtil;
 import com.simple.util.MD5Util;
-import com.simple.util.RedisPoolUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
