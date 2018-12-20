@@ -4,6 +4,7 @@ import com.simple.common.ServerResponse;
 import com.simple.dao.DetailMapper;
 import com.simple.pojo.Detail;
 import com.simple.service.IDetailService;
+import com.simple.util.RedisShardedPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,17 +23,17 @@ public class DetailServiceImpl implements IDetailService {
     public ServerResponse createDetail(String author, String temperature, String weight) {
         Detail detail = new Detail();
         // 获取编号
-        String number = RedisPoolUtil.get(author);
+        String number = RedisShardedPoolUtil.get(author);
         if (StringUtils.isEmpty(number)) {
             return ServerResponse.createByErrorMessage("获取编号为空");
         }
         // 设置次数
-        String timesResult = RedisPoolUtil.get(author + "times");
+        String timesResult = RedisShardedPoolUtil.get(author + "times");
         // 判断是否第一次
         if (StringUtils.isEmpty(timesResult)) {
-            RedisPoolUtil.set(author + "times", "0");
+            RedisShardedPoolUtil.set(author + "times", "0");
         }
-        int times = Objects.requireNonNull(RedisPoolUtil.incr(author + "times")).intValue();
+        int times = (int) RedisShardedPoolUtil.incr(author + "times");
         // 设置数据
         detail.setDataNumber(number + author);
         detail.setTimes(times);

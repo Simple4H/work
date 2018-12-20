@@ -9,6 +9,7 @@ import com.simple.service.IUserService;
 import com.simple.util.CookieUtil;
 import com.simple.util.JsonUtil;
 import com.simple.util.MD5Util;
+import com.simple.util.RedisShardedPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,7 @@ public class UserServiceImpl implements IUserService {
     // 查看登录状态
     public ServerResponse checkLoginStatus(HttpServletRequest request) {
         String loginToken = CookieUtil.readLoginToken(request);
-        User user = JsonUtil.string2Obj(RedisPoolUtil.get(loginToken), User.class);
+        User user = JsonUtil.string2Obj(RedisShardedPoolUtil.get(loginToken), User.class);
         if (user != null) {
             return ServerResponse.createBySuccess("获取成功", user);
         }

@@ -7,6 +7,7 @@ import com.simple.dao.DataMapper;
 import com.simple.pojo.Data;
 import com.simple.pojo.User;
 import com.simple.service.IDataService;
+import com.simple.util.RedisShardedPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class DataServiceImpl implements IDataService {
             ServerResponse.createBySuccessMessage("新建数据成功");
             // 将数据缓存到Redis中
             try {
-                RedisPoolUtil.set(username, number);
+                RedisShardedPoolUtil.set(username, number);
                 return ServerResponse.createBySuccessMessage("新建任务成功");
             } catch (Exception e) {
                 log.error("数据缓存到Redis中异常{}", e);
@@ -49,7 +50,7 @@ public class DataServiceImpl implements IDataService {
     // 结束数据
     public ServerResponse finishNewData(String username) {
         // 获取缓存里面的编号
-        String number = RedisPoolUtil.get(username);
+        String number = RedisShardedPoolUtil.get(username);
         if (StringUtils.isEmpty(number)) {
             return ServerResponse.createByErrorMessage("缓存不存在");
         }
@@ -59,9 +60,9 @@ public class DataServiceImpl implements IDataService {
             // 删除Redis缓存
             try {
                 // 删除编号的缓存
-                RedisPoolUtil.del(username);
+                RedisShardedPoolUtil.del(username);
                 // 删除次数的缓存
-                RedisPoolUtil.del(username + "times");
+                RedisShardedPoolUtil.del(username + "times");
             } catch (Exception e) {
                 log.error("删除Redis缓存失败", e);
             }

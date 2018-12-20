@@ -89,4 +89,19 @@ public class RedisShardedPoolUtil {
         RedisShardedPool.close(jedis);
         return result;
     }
+
+    public static long incr(String key) {
+        ShardedJedis jedis = null;
+        Long result = null;
+        try {
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.incr(key);
+        } catch (Exception e) {
+            log.error("incr key:{} error", key, e);
+            RedisShardedPool.close(jedis);
+            return result;
+        }
+        RedisShardedPool.close(jedis);
+        return result;
+    }
 }
