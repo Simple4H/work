@@ -17,7 +17,7 @@ public class WorkApplicationTests {
     @Test
     public void contextLoads() {
         String a = "simple" + "times";
-        log.error("a:{}",a);
+        log.error("a:{}", a);
 
     }
 
