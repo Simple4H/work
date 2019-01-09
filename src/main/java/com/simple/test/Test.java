@@ -17,15 +17,16 @@ public class Test {
 
     public static void main(String[] args) {
         User user1 = new User();
-        user1.setUsername("xiuwen");
+        user1.setUsername("真的不行吗");
         User user2 = new User();
-        user2.setUsername("simple");
+        user2.setUsername("咋回事啊");
         List<User> list = new ArrayList<>();
         list.add(user1);
         list.add(user2);
         RedisShardedPoolUtil.set("userList", JsonUtil.obj2String(list));
         List<User> result = (List<User>) JsonUtil.string2Obj(RedisShardedPoolUtil.get("userList"),List.class);
-        log.info("result:{}",result);
+        log.info("查询第一个:{}",result.get(0));
+        log.info("查询第一个:{}",result.get(1));
 
 
     }
